@@ -24,6 +24,9 @@
 #define K_TYPE_A                  5       // change these based on your requirement (digital pins)
 #define K_TYPE_B                  6 
 
+//Node specific
+#define SENSORS_NUM               2        // increase /decrease based on requirement
+#define NODE_ID                   50      //change for each node
 
 // Error bits ------------------------------------------------------
 #define BATT_ERR                  0   // battery low/bad voltage

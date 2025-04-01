@@ -18,7 +18,7 @@ class CRadio {
     
     //HARDCODING FOR TESTING ONLY
     uint8_t   GATEWAY_ID = 1;
-    uint16_t  NODE_ID    = 47; // 999 =  node not configured; 1000 = node currently being configured (limit: 1023)
+    // uint16_t  NODE_ID    = NODE_ID; // 999 =  node not configured; 1000 = node currently being configured (limit: 1023)
     uint8_t   NETWORK_ID = 10; // 99 = configuration network, 10 = sensor network (up to 255)
 
     char ENCRYPT_KEY[17] = "1234123412341234";
