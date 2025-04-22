@@ -26,7 +26,7 @@
 
 //Node specific
 #define SENSORS_NUM               2        // increase /decrease based on requirement
-#define NODE_ID                   50      //change for each node
+#define NODE_ID                   54      //change for each node
 
 // Error bits ------------------------------------------------------
 #define BATT_ERR                  0   // battery low/bad voltage

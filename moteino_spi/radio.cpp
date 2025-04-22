@@ -85,6 +85,7 @@ void CRadio::initializeRadio() {
             Error.raise_error(RADIO_ERR);
         else {
             Error.clear_error(RADIO_ERR);
+             radio.setHighPower();
             Serial.println("Radio initialized!");
         }
         // if hardware permits, try setting high power
@@ -129,8 +130,25 @@ void CRadio::sendDataPacket(uint16_t pre_temp,uint16_t post_temp, uint8_t error_
         // send the packet
         radio.send(GATEWAY_ID, p, sizeof(telemetry));
 
-       // start a 1 second timer
-        m_timer.start(500);
+    //    // start a 1 second timer
+     m_timer.start(500);
+
+    //start a 1 second timer
+        // Timer.setTimer(1,0,0);
+
+       // sit in a loop for 1 second until a response is received
+        // while (!Timer.timerExpired())
+        // {
+        //     // if we receive a response
+        //     if (radio.receiveDone())
+        //     {
+        //         // handle response and break out
+        //         handleIncomingPacket(radio.DATA);
+        //         success = true;
+        //         break;
+        //     }
+        // }
+        // Timer.clearFlag();
 
 
         // sit in a loop for 1 second until a response is received
@@ -182,6 +200,23 @@ void CRadio::sendConfigPacket(int no_of_attempts)
      
         // start a 1 second timer
         m_timer.start(500);
+
+        // start a 1 second timer
+       // Timer.setTimer(1,0,0);
+
+       // sit in a loop for 1 second until a response is received
+        // while (!Timer.timerExpired())
+        // {
+        //     // if we receive a response
+        //     if (radio.receiveDone())
+        //     {
+        //         // handle response and break out
+        //         handleIncomingPacket(radio.DATA);
+        //         success = true;
+        //         break;
+        //     }
+        // }
+        // Timer.clearFlag();
 
         //sit in a loop for 1 second until a response is received
         while (!m_timer.is_expired())
