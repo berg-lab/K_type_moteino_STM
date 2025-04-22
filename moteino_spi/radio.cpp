@@ -85,12 +85,14 @@ void CRadio::initializeRadio() {
             Error.raise_error(RADIO_ERR);
         else {
             Error.clear_error(RADIO_ERR);
+            radio.setHighPower();
             Serial.println("Radio initialized!");
         }
-        // if hardware permits, try setting high power
-        #ifdef IS_RFM69HW
-            radio.setHighPower(); //uncomment only for RFM69HW!
-        #endif
+        //if hardware permits, try setting high power
+        // #ifdef IS_RFM69HW
+        // printf("high power.....");
+        //     radio.setHighPower(); //uncomment only for RFM69HW!
+        // #endif
     #endif
 
     // assign encription key to radio object for later transmission

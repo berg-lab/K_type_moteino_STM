@@ -2,7 +2,7 @@
 #include <stdint.h>
 #include "common.h"
 #include "globals.h"
-
+#define MISO_CLAMP_CTRL_PIN 3  // Choose an available GPIO pin
 
 MAX6675 ThermoCouples[SENSORS_NUM] = {
   MAX6675(K_TYPE_A, &SPI),  //  HW SPI
@@ -13,18 +13,22 @@ MAX6675 ThermoCouples[SENSORS_NUM] = {
 void setup() {
    //while(!Serial);
   Serial.begin(SERIAL_BAUD);
-  Serial.println(__FILE__);
-  Serial.print("MAX6675_LIB_VERSION: ");
-  Serial.println(MAX6675_LIB_VERSION);
-  Serial.println();
-  delay(250);
+  pinMode(MISO_CLAMP_CTRL_PIN, OUTPUT);
+  
+  // During boot, set GPIO HIGH to turn the 2N2222 ON and clamp MISO to GND
+  digitalWrite(MISO_CLAMP_CTRL_PIN, HIGH);
+  
+  delay(3000);  // Wait 3 seconds for the board to boot without interference
+  
+ 
   // Radio Initialization
   Radio.initializeRadio();
-  Serial.println("Radio Initialized!");
   Radio.sendConfigPacket(3);
   Serial.println("Config Packet Sent!");
+ 
   SPI.begin();
-
+ // After boot, set GPIO LOW to turn the 2N2222 OFF and release MISO
+  digitalWrite(MISO_CLAMP_CTRL_PIN, LOW);
   for (int i = 0; i < SENSORS_NUM; i++) {
     ThermoCouples[i].begin();
     ThermoCouples[i].setSPIspeed(4000000);
