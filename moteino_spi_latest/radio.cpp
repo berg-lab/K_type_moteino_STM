@@ -11,7 +11,7 @@
 #ifdef WITHRFM69
 #include <RFM69.h>
 #include <RFM69_ATC.h>
-
+#include "LowPower.h"
 #ifdef ENABLE_ATC
 RFM69_ATC radio;
 #else
@@ -86,6 +86,7 @@ void CRadio::initializeRadio() {
 // if hardware permits, try setting high power
 #ifdef IS_RFM69HW
   radio.setHighPower();  //uncomment only for RFM69HW!
+  radio.setPowerLevel(24);
 #endif
 #endif
 
@@ -128,6 +129,7 @@ void CRadio::sendDataPacket(uint16_t pre_temp, uint16_t post_temp, uint8_t error
 
 
     // sit in a loop for 1 second until a response is received
+    
     while (!m_timer.is_expired()) {
       // if we receive a response
       if (radio.receiveDone()) {
@@ -215,3 +217,7 @@ void CRadio::handleIncomingPacket(const unsigned char* raw) {
   }
 }
 //=========================================================================================================
+void CRadio::sleep()
+{ 
+    radio.sleep();
+}

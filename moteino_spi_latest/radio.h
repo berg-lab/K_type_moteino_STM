@@ -11,6 +11,9 @@ class CRadio {
     void initializeRadio();
     void sendDataPacket(uint16_t pre_temp,uint16_t post_temp, uint8_t error_byte);
     void sendConfigPacket(int no_of_attempts);
+       // Puts the radio into sleep mode
+    void    sleep();
+
     
   private:
     uint8_t transaction_id;
