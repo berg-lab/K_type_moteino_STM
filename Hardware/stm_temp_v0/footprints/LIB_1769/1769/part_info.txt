@@ -1,0 +1,9 @@
+Manufacturer=Adafruit
+PartNumber=1769
+PartCategory=Connector
+PackageCategory=Other
+PinCount=4
+Version=1.2
+Released=2017-12-09 12:05:00
+Downloaded=2025-08-18 20:32:49
+3D=Y
